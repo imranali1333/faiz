@@ -1,0 +1,6 @@
+node_modules
+# Keep environment variables out of version control
+.env
+# Edit the files to remove secrets
+.env.example
+sample.env

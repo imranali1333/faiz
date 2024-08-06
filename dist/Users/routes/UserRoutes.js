@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const telegramHandlers_1 = require("../handleTelegramCommand/telegramHandlers");
+const VerifyLogin_1 = require("../../MiddleWare/UserAuth/VerifyLogin");
+const errorhandler_1 = require("../../Admin/handlers/errorhandler");
+const router = (0, express_1.Router)();
+router.post('/webhook', telegramHandlers_1.handleTelegramWebhook);
+router.get('/auth', telegramHandlers_1.authUser);
+router.post('/user/auth', telegramHandlers_1.authUser);
+router.get('/login', telegramHandlers_1.loginUser);
+router.get('/user', VerifyLogin_1.ensureAuthenticated, telegramHandlers_1.getUser);
+router.get('/logout', VerifyLogin_1.ensureAuthenticated, telegramHandlers_1.logoutUser);
+// router.get('/list', getAllUsers); 
+router.get('/search', telegramHandlers_1.searchUsers);
+router.delete('/client/delete/:id', errorhandler_1.catchErrors, telegramHandlers_1.deleteUser);
+exports.default = router;
