@@ -4,3 +4,5 @@ node_modules
 # Edit the files to remove secrets
 .env.example
 sample.env
+sample.env
+.variables.env
